@@ -29,8 +29,8 @@ const SignInFormu = () => {
           window.location = "/";
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       });
   };
 
