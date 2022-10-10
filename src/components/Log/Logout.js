@@ -18,12 +18,12 @@ const Logout = () => {
       .then(() => removeCookie("jwt"))
       .catch((error) => console.log(error));
 
-    window.location = "/profile";
+    window.location = "/";
   };
 
   return (
     <li onClick={logout}>
-      <img src="./img/icons/logout.svg" alt="LogOut" />
+      <img src="./img/logout.svg" alt="LogOut" />
     </li>
   );
 };
