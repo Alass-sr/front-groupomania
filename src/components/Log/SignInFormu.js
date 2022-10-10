@@ -12,30 +12,23 @@ const SignInFormu = () => {
     const emailError = document.querySelector(".email.error");
     const passwordError = document.querySelector(".password.error");
 
-    axios({
-      method: "post",
-      url: `${process.env.REACT_APP_API_URL}api/user/login`,
-      withCredentials: true,
-      data: {
-        email,
-        password,
-      },
+    const data = { email, password };
+    axios.post("http://localhost:4200/api/user/login", data)
+    .then((res) => {
+      console.log(res);
+      if (res.data.errors) {
+        emailError.innerHTML = res.data.errors.email;
+        passwordError.innerHTML = res.data.errors.password;
+      } else {
+        window.location = "/";
+      }
     })
-      .then((res) => {
-        if (res.data.errors) {
-          emailError.innerHTML = res.data.errors.email;
-          passwordError.innerHTML = res.data.errors.password;
-        } else {
-          window.location = "/";
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .catch((err) => {
+      console.log(err);
+    });
   };
-
   return (
-    <form action="" onSubmit={handleLogin} id="sign-up-form">
+    <form action="post" onSubmit={handleLogin} id="sign-up-form">
       <label htmlFor="email">Email</label>
       <br />
       <input
